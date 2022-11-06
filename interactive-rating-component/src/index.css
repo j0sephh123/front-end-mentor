@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  --dark-blue: #262e38;
+  --light-gray: #969fad;
+  --medium-gray: #7c8798;
+  --orange: #fc7614;
+  --white: #ffffff;
+  --very-dark-blue: #131518;
+  --black-gradient: #232a34;
+
+  --font-heading-large: 28px;
+  --font-rating: 16px;
+  --font-heading-medium: 16px;
+  --font-body: 15px;
+}
