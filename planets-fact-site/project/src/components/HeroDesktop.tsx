@@ -25,14 +25,14 @@ type Props = {
   status: Status;
 };
 
-const HeroMobile = ({ status, planet }: Props) => {
+const HeroDesktop = ({ status, planet }: Props) => {
   const planetName = planetsMap[planet]["name"];
   const isGeologyStatus = status === 2;
   const isInternalStatus = status === 1;
   const src = `${basePlanetImgPath}${planetName}${
     isInternalStatus ? "-internal" : ""
   }.svg`;
-  const size = planetsMap[planet]["mobileSize"];
+  const size = planetsMap[planet]["desktopSize"];
   const width = size * 0.5;
   const left = size * 0.25;
   const bottom = -(size * 0.3);
@@ -66,4 +66,4 @@ const HeroMobile = ({ status, planet }: Props) => {
   );
 };
 
-export default HeroMobile;
+export default HeroDesktop;

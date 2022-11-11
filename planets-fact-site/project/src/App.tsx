@@ -1,22 +1,24 @@
 import { useState } from "react";
-import Details from "./components/DetailsMobile";
+import DetailsMobile from "./components/DetailsMobile";
 import Header from "./components/Header";
 import HeaderMobileToggled from "./components/HeaderMobileToggled";
-import Hero from "./components/HeroMobile";
+import HeroMobile from "./components/HeroMobile";
 import Summary from "./components/SummaryMobile";
-import Tabs from "./components/TabsMobile";
+import TabsMobile from "./components/TabsMobile";
 import { Planet, Status } from "./models";
 import { breakpoints, globalStyles, styled } from "./theme";
 import data from "./data.json";
 import { mapStatusToTitle } from "./constants";
 import useMediaQuery from "./hooks/useMediaQuery";
+import TabsDesktop from "./components/TabsDesktop";
+import DetailsDesktop from "./components/DetailsDesktop";
+import HeroDesktop from "./components/HeroDesktop";
 
 // TODO fix data type here as the correct return of the function
 const loadData = () => data;
 
 // TODO Ugly, remove from here.
 const AppStyle = styled("div", {
-  height: "100vh",
   backgroundColor: "$black",
   color: "$white",
   padding: "$5 $7 $12 $7",
@@ -40,17 +42,26 @@ function App() {
   // 2. To have prepared arguments instead of creating them on the fly here.
   const isMobile = useMediaQuery(`(max-width: ${breakpoints.mobile}px)`);
 
+  //   rotation
+  // revolution
+  // radius
+  // temperature
+
+  const { radius, revolution, rotation, temperature } = loadData()[planet];
+
   return (
     <AppStyle>
       {isMobile ? (
         <>
           <Header
+            planet={planet}
+            status={status}
             isMobile
             onClick={() => setIsMobileNavVisible(!isMobileNavVisible)}
           />
           {!isMobileNavVisible ? (
             <>
-              <Tabs
+              <TabsMobile
                 onClick={(tab: Status) => {
                   if (tab !== status) {
                     setStatus(tab);
@@ -59,9 +70,9 @@ function App() {
                 status={status}
                 planet={planet}
               />
-              <Hero planet={planet} status={status} />
+              <HeroMobile planet={planet} status={status} />
               <Summary name={name} content={content} source={source} />
-              <Details />
+              <DetailsMobile />
             </>
           ) : (
             <HeaderMobileToggled
@@ -74,19 +85,40 @@ function App() {
         </>
       ) : (
         <>
-          <Header onListItemClick={setPlanet} />
-          <Hero planet={planet} status={status} />
-          <Tabs
-            onClick={(tab: Status) => {
-              if (tab !== status) {
-                setStatus(tab);
-              }
+          <Header status={status} planet={planet} onListItemClick={setPlanet} />
+          <div
+            style={{
+              marginTop: "126px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
-            status={status}
-            planet={planet}
+          >
+            <HeroDesktop planet={planet} status={status} />
+            <div
+              style={{
+                width: "350px",
+                marginRight: "140px",
+              }}
+            >
+              <Summary name={name} content={content} source={source} />
+              <TabsDesktop
+                onClick={(tab: Status) => {
+                  if (tab !== status) {
+                    setStatus(tab);
+                  }
+                }}
+                status={status}
+                planet={planet}
+              />
+            </div>
+          </div>
+          <DetailsDesktop
+            radius={radius}
+            revolution={revolution}
+            rotation={rotation}
+            temperature={temperature}
           />
-          <Summary name={name} content={content} source={source} />
-          <Details />
         </>
       )}
     </AppStyle>

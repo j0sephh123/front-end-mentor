@@ -1,11 +1,25 @@
-import { planetsMap } from "../constants";
-import { styled } from "../theme";
+import { planetsMap, PlanetsMap, PlanetsMapIndex } from "../constants";
+import { colors, styled } from "../theme";
+import ChevronIcon from "../assets/images/icon-chevron.svg";
+import { centerContent } from "../utils/styleHelpers";
 
-const HeaderMobileToggledStyle = styled("div", {});
+const HeaderMobileToggledStyle = styled("div", {
+  paddingTop: "24px",
+});
+const Wrapper = styled("div", {
+  ...centerContent,
+  paddingBottom: "20px",
+  paddingTop: "20px",
+  "&:not(:last-of-type)": {
+    borderBottom: `1px solid ${colors.mediumGray}`,
+  },
+});
 const PlanetStyle = styled("div", {
   fontSize: "15px",
+  paddingLeft: "33px",
   textTransform: "uppercase",
   fontFamily: "$SpartanBold",
+  letterSpacing: "1.36",
 });
 
 type Props = {
@@ -16,12 +30,22 @@ const HeaderMobileToggled = ({ onClick }: Props) => {
   return (
     <HeaderMobileToggledStyle>
       {Object.values(planetsMap).map((planet, index) => {
-        console.log(planet);
-
         return (
-          <PlanetStyle onClick={() => onClick(index)} key={planet.name}>
-            {planet.name}
-          </PlanetStyle>
+          <Wrapper onClick={() => onClick(index)} key={planet.name}>
+            <div style={{ ...centerContent }}>
+              <div
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  backgroundColor:
+                    planetsMap[index as PlanetsMapIndex]["color"],
+                }}
+              ></div>
+              <PlanetStyle>{planet.name}</PlanetStyle>
+            </div>
+            <img src={ChevronIcon} />
+          </Wrapper>
         );
       })}
     </HeaderMobileToggledStyle>

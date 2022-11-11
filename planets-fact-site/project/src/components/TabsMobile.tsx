@@ -1,4 +1,4 @@
-import { tabs } from "../constants";
+import { planetsMap, tabs } from "../constants";
 import { Planet, Status } from "../models";
 import { styled } from "../theme";
 
@@ -18,6 +18,8 @@ const Wrapper = styled("div", {
     position: "absolute",
   },
 });
+
+
 
 const Tab = styled("div", {
   fontFamily: "$SpartanBold",
@@ -40,45 +42,46 @@ const Tab = styled("div", {
         },
       },
     },
+    // TODO generate this
     planet: {
       0: {
         "&::before": {
-          backgroundColor: "$teal",
+          backgroundColor: planetsMap[0]["color"],
         },
       },
       1: {
         "&::before": {
-          backgroundColor: "$orange3",
+          backgroundColor: planetsMap[1]["color"],
         },
       },
       2: {
         "&::before": {
-          backgroundColor: "$purple",
+          backgroundColor: planetsMap[2]["color"],
         },
       },
       3: {
         "&::before": {
-          backgroundColor: "$orange1",
+          backgroundColor: planetsMap[3]["color"],
         },
       },
       4: {
         "&::before": {
-          backgroundColor: "$orange2",
+          backgroundColor: planetsMap[4]["color"],
         },
       },
       5: {
         "&::before": {
-          backgroundColor: "$orange3",
+          backgroundColor: planetsMap[5]["color"],
         },
       },
       6: {
         "&::before": {
-          backgroundColor: "$green",
+          backgroundColor: planetsMap[6]["color"],
         },
       },
       7: {
         "&::before": {
-          backgroundColor: "$blue",
+          backgroundColor: planetsMap[7]["color"],
         },
       },
     },

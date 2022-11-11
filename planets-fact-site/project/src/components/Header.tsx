@@ -2,9 +2,10 @@ import { styled } from "../theme";
 import HamburgerIcon from "../assets/images/icon-hamburger.svg";
 import { H2 } from "../styled/Typography";
 import { planetsMap } from "../constants";
+import { Planet, Status } from "../models";
 
 const Wrapper = styled("div", {
-  height: "54px",
+  height: 54, // mobile
   position: "relative",
   "&::before": {
     left: -24,
@@ -14,6 +15,20 @@ const Wrapper = styled("div", {
     width: "100vw",
     backgroundColor: "$mediumGray",
     position: "absolute",
+  },
+
+  "@lg": {
+    height: 71,
+    paddingTop: 12,
+    "&::before": {
+      left: -24,
+      bottom: 0,
+      content: "",
+      height: 1,
+      width: "calc(100vw - 24px)",
+      backgroundColor: "$mediumGray",
+      position: "absolute",
+    },
   },
 });
 
@@ -37,15 +52,82 @@ type Props = {
   onClick?: () => void;
   onListItemClick?: any; //() => void;
   isMobile?: boolean;
+  planet: Planet;
+  status: Status;
 };
 
 const ListItem = styled("div", {
   textTransform: "uppercase",
   fontFamily: "$SpartanBold",
   cursor: "pointer",
+  position: "relative",
+
+  variants: {
+    isActive: {
+      true: {
+        "&::before": {
+          content: "",
+          position: "absolute",
+          height: 4,
+          backgroundColor: "$teal",
+          width: "100%",
+          top: -37,
+        },
+      },
+    },
+    // TODO generate this
+    planet: {
+      0: {
+        "&::before": {
+          backgroundColor: planetsMap[0]["color"],
+        },
+      },
+      1: {
+        "&::before": {
+          backgroundColor: planetsMap[1]["color"],
+        },
+      },
+      2: {
+        "&::before": {
+          backgroundColor: planetsMap[2]["color"],
+        },
+      },
+      3: {
+        "&::before": {
+          backgroundColor: planetsMap[3]["color"],
+        },
+      },
+      4: {
+        "&::before": {
+          backgroundColor: planetsMap[4]["color"],
+        },
+      },
+      5: {
+        "&::before": {
+          backgroundColor: planetsMap[5]["color"],
+        },
+      },
+      6: {
+        "&::before": {
+          backgroundColor: planetsMap[6]["color"],
+        },
+      },
+      7: {
+        "&::before": {
+          backgroundColor: planetsMap[7]["color"],
+        },
+      },
+    },
+  },
 });
 
-const Header = ({ onClick, isMobile, onListItemClick }: Props) => {
+const Header = ({
+  onClick,
+  isMobile,
+  onListItemClick,
+  planet,
+  status,
+}: Props) => {
   return (
     <Wrapper>
       <Content>
@@ -59,13 +141,15 @@ const Header = ({ onClick, isMobile, onListItemClick }: Props) => {
               gap: "33px",
             }}
           >
-            {Object.values(planetsMap).map((planet, planetIndex) => {
+            {Object.values(planetsMap).map(({ name }, planetIndex) => {
               return (
                 <ListItem
-                  key={planet.name}
+                  planet={planet}
+                  isActive={planet === planetIndex}
+                  key={name}
                   onClick={() => onListItemClick(planetIndex)}
                 >
-                  {planet.name}
+                  {name}
                 </ListItem>
               );
             })}

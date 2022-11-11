@@ -4,6 +4,7 @@ import { styled } from "../theme";
 const Wrapper = styled("div", {
   textAlign: "center",
   height: "235px",
+  width: "340px",
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",

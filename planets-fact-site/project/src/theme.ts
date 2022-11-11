@@ -1,7 +1,8 @@
 import { createStitches, globalCss } from "@stitches/react";
 
-const colors = {
+export const colors = {
   white: "#fff",
+  whiteWithHalfOpacity: "rgba(255,255,255,0.5)",
   black: "#070724",
   darkGray: "#38384F",
   mediumGray: "#979797", // Not included in Figma, but present in the designs
