@@ -1,13 +1,16 @@
-import { planetsMap, PlanetsMap, PlanetsMapIndex } from "../constants";
+import { planetsMap, PlanetsMapIndex } from "../constants";
 import { colors, styled } from "../theme";
 import ChevronIcon from "../assets/images/icon-chevron.svg";
 import { centerContent } from "../utils/styleHelpers";
 
 const HeaderMobileToggledStyle = styled("div", {
   paddingTop: "24px",
+  height: "100vh",
 });
 const Wrapper = styled("div", {
-  ...centerContent,
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
   paddingBottom: "20px",
   paddingTop: "20px",
   "&:not(:last-of-type)": {

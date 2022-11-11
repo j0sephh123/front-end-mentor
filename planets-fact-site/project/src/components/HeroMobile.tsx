@@ -8,7 +8,7 @@ import { styled } from "../theme";
 import { centerContent } from "../utils/styleHelpers";
 
 const HeroStyle = styled("div", {
-  height: "$heroMobileHeight",
+  height: 304,
   position: "relative",
   ...centerContent,
 

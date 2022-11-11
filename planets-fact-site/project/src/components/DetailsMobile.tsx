@@ -2,13 +2,6 @@ import { colors, styled } from "../theme";
 
 const DetailsStyle = styled("div", {});
 
-const items = [
-  { field: "ROTATION TIME", value: "58.6 Days" },
-  { field: "REVOLUTION TIME", value: "87.97 Days" },
-  { field: "RADIUS", value: "2,439.7 KM" },
-  { field: "AVERAGE TEMP.", value: "430°c" },
-];
-
 const DetailsItemWrapper = styled("div", {
   height: "48px",
   border: `1px solid ${colors.whiteWithHalfOpacity}`,
@@ -38,7 +31,26 @@ const DetailsItem = ({ field, value }: any) => (
   </DetailsItemWrapper>
 );
 
-const DetailsMobile = () => {
+type Props = {
+  rotation: string;
+  revolution: string;
+  radius: string;
+  temperature: string;
+};
+
+const DetailsMobile = ({
+  radius,
+  revolution,
+  rotation,
+  temperature,
+}: Props) => {
+  const items = [
+    { field: "ROTATION TIME", value: rotation },
+    { field: "REVOLUTION TIME", value: revolution },
+    { field: "RADIUS", value: radius },
+    { field: "AVERAGE TEMP.", value: temperature },
+  ];
+
   return (
     <DetailsStyle>
       {items.map(({ field, value }) => (

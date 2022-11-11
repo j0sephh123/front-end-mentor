@@ -42,11 +42,6 @@ function App() {
   // 2. To have prepared arguments instead of creating them on the fly here.
   const isMobile = useMediaQuery(`(max-width: ${breakpoints.mobile}px)`);
 
-  //   rotation
-  // revolution
-  // radius
-  // temperature
-
   const { radius, revolution, rotation, temperature } = loadData()[planet];
 
   return (
@@ -72,7 +67,12 @@ function App() {
               />
               <HeroMobile planet={planet} status={status} />
               <Summary name={name} content={content} source={source} />
-              <DetailsMobile />
+              <DetailsMobile
+                radius={radius}
+                revolution={revolution}
+                rotation={rotation}
+                temperature={temperature}
+              />
             </>
           ) : (
             <HeaderMobileToggled
